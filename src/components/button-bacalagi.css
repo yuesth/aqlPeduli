@@ -1,0 +1,19 @@
+.btnBacaLagi{
+    display: inline-flex;
+    padding: 10px 15px;
+    border: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #fff0e6;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid #fd3535;
+    background: linear-gradient(147deg, #2F3990  0%, #E92998 54%);
+}
+
+.btnBacaLagi:hover{
+    background: linear-gradient(147deg, #232a6d 0%, #b12175 54%);
+}

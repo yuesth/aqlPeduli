@@ -1,0 +1,14 @@
+.lihatlainnya{
+    border-radius:10px;
+    margin-top :25px;
+    border: solid #E92998 2px;
+    color: #E92998;
+  }
+
+  .lihatlainnya:hover{
+    border-radius:10px;
+    margin-top :25px;
+    border: solid #b9227a 2px;
+    color: #ffffff;
+    background: linear-gradient(147deg,#2F3990 0%, #E92998 54%);
+  }
