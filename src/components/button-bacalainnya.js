@@ -3,10 +3,10 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import "./button-bacalainnya.css"
 import { Button } from "react-bootstrap"
 
-function ButtonBacaLainnya() {
+function ButtonBacaLainnya(props) {
     return (
         <Button variant="default" className="lihatlainnya">
-            Lihat Lainnya
+            {props.teksBacaLainnya}
         </Button>
     )
 }

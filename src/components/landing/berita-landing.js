@@ -73,7 +73,7 @@ const BeritaNasional = () => {
             </Row>
             <Row>
                 <Col style={{textAlign: `center`,}}>
-                    <ButtonBacaLainnya/>
+                    <ButtonBacaLainnya teksBacaLainnya={`Lihat berita nasional lainnya`}/>
                 </Col>
             </Row>
         </Col>
@@ -94,7 +94,7 @@ const BeritaInternasional = () => {
             </Row>
             <Row>
                 <Col style={{textAlign: `center`,}}>
-                    <ButtonBacaLainnya/>
+                    <ButtonBacaLainnya teksBacaLainnya={`Lihat berita internasional lainnya`}/>
                 </Col>
             </Row>
         </Col>

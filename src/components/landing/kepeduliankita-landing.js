@@ -81,7 +81,7 @@ const ButtonLainnya = () => {
         <Container>
             <Row>
                 <Col style={{ textAlign: `center` }}>
-                    <ButtonBacaLainnya />
+                    <ButtonBacaLainnya teksBacaLainnya={`Lihat Lainnya`}/>
                 </Col>
             </Row>
         </Container>
