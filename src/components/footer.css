@@ -1,0 +1,22 @@
+.colKontak{
+    text-align: center;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+    line-height: 0.2;
+}
+
+
+
+.copyrightKontak{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.iconKontak{
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.isiKontakFooter{
+}
