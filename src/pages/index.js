@@ -5,7 +5,6 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
 // import { Link } from "gatsby"
 
-const contType = "container-fluid"
 const IndexPage = () => (
   <LayoutLanding />
 )
