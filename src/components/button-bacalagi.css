@@ -2,6 +2,8 @@
     display: inline-flex;
     padding: 10px 15px;
     border: none;
+    width: auto;
+    height: auto;
     font-size: 12px;
     text-transform: uppercase;
     color: #fff0e6;
