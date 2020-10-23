@@ -4,7 +4,6 @@ import Layout from "../layout"
 import { Container, Row, Col, Button } from "react-bootstrap"
 import ButtonBacaLainnya from "../button-bacalainnya"
 import ListProgram from "./list-program"
-import IndexPage from "../../pages"
 import "./layout.css"
 
 function LayoutProgramdonasi() {

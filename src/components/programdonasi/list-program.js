@@ -29,13 +29,16 @@ function PersenTerkumpul(props) {
     )
 }
 
+
+
 function ListProgram() {
     const dataProgramKategori = useStaticQuery(graphql`
     query MyQuery{
         allStrapiProgram {
             edges {
               node {
-                idKategori
+                id
+                strapiId
                 judulProgram
                 totaldanaProgram
                 totalterkumpulProgram
@@ -66,6 +69,19 @@ function ListProgram() {
         }
     }`)
 
+    useEffect(() => {
+        filterSelection('all')
+        var btnContainer = document.getElementById("col-list");
+        var btns = btnContainer.getElementsByClassName("kategoriBtn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+    })
+
     const item_kateg = []
     dataProgramKategori.allStrapiKategori.edges.map(kateg => {
         var it = {
@@ -76,9 +92,9 @@ function ListProgram() {
     })
 
     function filterSelection(c) {
-        // alert(c)
         var x, i;
         x = document.getElementsByClassName("item-donasi");
+        if (c == "all") c = "";
         for (i = 0; i < x.length; i++) {
             RemoveClass(x[i], "show");
             if (x[i].className.indexOf(c) > -1) AddClass(x[i], "show");
@@ -111,47 +127,50 @@ function ListProgram() {
         var namaKategoriQuery2 = namaKategoriQuery.replace(/\s/g, "")
         var namaClass = "item-donasi " + namaKategoriQuery2
         return (
-            <Card border="primary" className={namaClass}>
-                {doc.node.gambarProgram !== null && <Img fixed={doc.node.gambarProgram.childImageSharp.fixed} />
-                }
-                <Card.Body>
-                    <Card.Title>
-                        <p>judul: {doc.node.judulProgram}</p>
-                    </Card.Title>
-                    <p>deskripsi: {doc.node.deskripsiProgram}</p>
-                </Card.Body>
-                <ListGroup className="list-group-flush">
-                    <ListGroupItem>
-                        <DariTanggal tanggal={doc.node.created_at} />
-                        <p>durasi: {doc.node.durasiProgram} hari</p>
-                        {doc.node.durasiProgram !== null && <SisaHari tanggal={doc.node.created_at} durasi={doc.node.durasiProgram} />
-                        }
-                    </ListGroupItem>
-                    <ListGroupItem>
-                        <p>total dana: Rp {doc.node.totaldanaProgram}</p>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                        <p>terkumpul: {doc.node.totalterkumpulProgram}</p>
-                        {doc.node.totalterkumpulProgram !== null && <PersenTerkumpul total={doc.node.totaldanaProgram} terkumpul={doc.node.totalterkumpulProgram} />
-                        }
-                    </ListGroupItem>
-                </ListGroup>
-                <Card.Body>
-                    <ButtonBacaLagi teks={`DONASI`} />
-                </Card.Body>
-            </Card>
+            <Link to={`/programs_${doc.node.id}`}>
+                <Card border="primary" className={namaClass}>
+                    {doc.node.gambarProgram !== null && <Img fixed={doc.node.gambarProgram.childImageSharp.fixed} />
+                    }
+                    <Card.Body>
+                        <Card.Title>
+                            <p>judul: {doc.node.judulProgram}</p>
+                        </Card.Title>
+                        <p>deskripsi: {doc.node.deskripsiProgram}</p>
+                    </Card.Body>
+                    <ListGroup className="list-group-flush">
+                        <ListGroupItem>
+                            <DariTanggal tanggal={doc.node.created_at} />
+                            <p>durasi: {doc.node.durasiProgram} hari</p>
+                            {doc.node.durasiProgram !== null && <SisaHari tanggal={doc.node.created_at} durasi={doc.node.durasiProgram} />
+                            }
+                        </ListGroupItem>
+                        <ListGroupItem>
+                            <p>total dana: Rp {doc.node.totaldanaProgram}</p>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                            <p>terkumpul: {doc.node.totalterkumpulProgram}</p>
+                            {doc.node.totalterkumpulProgram !== null && <PersenTerkumpul total={doc.node.totaldanaProgram} terkumpul={doc.node.totalterkumpulProgram} />
+                            }
+                        </ListGroupItem>
+                    </ListGroup>
+                    {/* <Card.Body>
+                        <ButtonBacaLagi teks={`DONASI`} />
+                    </Card.Body> */}
+                </Card>
+            </Link>
         )
     })
 
     return (
         <div className="container">
             <div className="row">
-                <Col>
+                <Col id="col-list">
+                    <Button variant="default" className="kategoriBtn active" onClick={() => filterSelection('all')}>Semua</Button>
                     {item_kateg.map((kateg, idx) => {
                         var nama1 = kateg.namaKateg
                         var nama2 = nama1.replace(/\s/g, "")
                         return (
-                            <Button variant="default" className="kategoriBtn2" key={idx} onClick={() => filterSelection(nama2)}>
+                            <Button variant="default" className="kategoriBtn" key={idx} onClick={() => filterSelection(nama2)}>
                                 {kateg.namaKateg}
                             </Button>
                         )
