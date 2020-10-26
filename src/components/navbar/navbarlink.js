@@ -43,9 +43,9 @@ const NavbarLinks = () => {
   return (
     <>
       <NavItem to="/">Beranda</NavItem>
-      <NavItem to="/">Profil</NavItem>
+      <NavItem to="/profil">Profil</NavItem>
       <NavItem to="/">Berita</NavItem>
-      <NavItem to="/programdonasi">Kepedulian</NavItem>
+      <NavItem to="/programdonasi">Program</NavItem>
       <NavItem to="/blog">Informasi</NavItem>
       <NavItem to="/404">Khazanah</NavItem>
       <Button variant="success" className="custom-donasiBtn">DONASI</Button>

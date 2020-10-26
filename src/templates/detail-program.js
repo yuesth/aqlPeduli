@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import { graphql } from 'gatsby'
-import { Container, Row, Col, Breadcrumb, ProgressBar, Button, Tabs, Tab } from "react-bootstrap"
+import { Container, Row, Col, Breadcrumb, ProgressBar, Button, Tabs, Tab, Dropdown, DropdownButton } from "react-bootstrap"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 import "./detail-program.css"
@@ -13,9 +13,48 @@ function SisaHari(props) {
     )
 }
 
+function TimelineUpdate(props) {
+    // useEffect(() => {
+    //     function lampirGambar() {
+    //         var x = document.getElementById("gambar-update");
+    //         x.style.display = "inline-block"
+    //     }
+    // })
+
+    const listUpdate = props.update.map((doc, idx) => {
+        return (
+            <li className="timeline-item bg-white rounded ml-3 p-4">
+                <div className="timeline-arrow">
+                    <h2 className="h5 mb-0">
+                        {doc.namaUpdate}
+                    </h2>
+                    <span className="small text-gray">
+                        <i class="fa fa-clock-o mr-1"></i>
+                        {doc.tanggalpelaksanaanUpdate}
+                    </span>
+                    <p className="text-small mt-2 font-weight-light">
+                        {doc.deskripsiUpdate}
+                    </p>
+                    {/* <DropdownButton variant="secondary" title="Tampilkan Lampiran" size="sm">
+                        <Dropdown.Item eventKey="1" onClick={() => lampirGambar()}>Gambar</Dropdown.Item>
+                        <Dropdown.Item eventKey="2">Dokumen</Dropdown.Item>
+                    </DropdownButton> */}
+                    {doc.gambarUpdate !== null && <Img fixed={doc.gambarUpdate.childImageSharp.fixed} id="gambar-update"></Img>}
+                </div>
+            </li>
+        )
+    })
+    return (
+        <div className="col mx-auto">
+            <ul className="timeline">
+                {listUpdate}
+            </ul>
+        </div>
+    )
+}
+
 function ControlledTabs(props) {
     const [key, setKey] = useState('cerita');
-
     return (
         <Tabs
             id="controlled-tab-example"
@@ -30,10 +69,9 @@ function ControlledTabs(props) {
                 </div>
             </Tab>
             <Tab eventKey="update" title="Update">
-                <div style={{ width: `auto`, height: `auto` }}>
-                    <h5>{props.update.namaUpdate}</h5>
-                    <p>{props.update.deskripsiUpdate}</p>
-                </div>
+                <Row>
+                    <TimelineUpdate update={props.update} />
+                </Row>
             </Tab>
         </Tabs>
     );
@@ -80,7 +118,7 @@ const DetailProgram = ({ data }) => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col md={7}>
+                    <Col md={8}>
                         {data.strapiProgram.cerita_program !== null && <ControlledTabs cerita={data.strapiProgram.cerita_program.cerita} update={data.strapiProgram.update_programs} />}
                     </Col>
                 </Row>
@@ -113,6 +151,13 @@ query QueryDetailProgram($id: String!){
           deskripsiUpdate
           tanggalpelaksanaanUpdate(formatString: "MM/DD/YYYY")
           id
+          gambarUpdate {
+            childImageSharp {
+              fixed(height: 300, width: 500) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
         }
         cerita_program {
             cerita
@@ -121,4 +166,3 @@ query QueryDetailProgram($id: String!){
     }
 }`
 
-{/* <h1>{data.strapiProgram.judulProgram}</h1> */ }

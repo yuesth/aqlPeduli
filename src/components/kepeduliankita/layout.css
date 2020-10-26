@@ -1,0 +1,16 @@
+.item-kk{
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    border: 2px solid #E92998;
+}
+
+.konten{
+    font-size: 12px;
+    font-weight: lighter;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}

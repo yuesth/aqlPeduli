@@ -30,7 +30,7 @@ function Layout({ children, props }) {
       <div
         style={{
           margin: `0 auto`,
-          padding: `0`,
+          paddingTop: `40px`,
         }}
       >
         <main>{children}</main>

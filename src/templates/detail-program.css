@@ -7,3 +7,57 @@
     border: 2px solid #E92998;
     border-radius: 10px;
 }
+
+/* Update Part */
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+ /* Timeline vertical line */
+ ul.timeline:before {
+    content: ' ';
+    background: rgb(87, 86, 86);
+    display: inline-block;
+    position: absolute;
+    left: 16px;
+    width: 4px;
+    height: 100%;
+    z-index: 400;
+    border-radius: 1rem;
+}
+
+li.timeline-item {
+    margin: 20px 0;
+    box-shadow: 0 0 10px #363435;
+}
+
+/* Timeline item arrow */
+/* .timeline-arrow {
+    border-top: 0.5rem solid transparent;
+    border-right: 0.5rem solid rgb(85, 84, 84);
+    border-bottom: 0.5rem solid transparent;
+    display: block;
+    position: relative;
+    left: 2rem;
+} */
+
+/* Timeline item circle marker */
+ li.timeline-item::before {
+    content: ' ';
+    background: #ddd;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    left: 11px;
+    width: 14px;
+    height: 14px;
+    z-index: 400;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+} 
+
+.gambar-update{
+    display: none;
+}

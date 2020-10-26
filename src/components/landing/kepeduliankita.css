@@ -126,7 +126,7 @@ h2{
   .sliders{
     position: absolute;
     bottom: 25px;
-    left: 65%;
+    left: 70%;
     transform: translateX(-50%);
     z-index: 12;
   }

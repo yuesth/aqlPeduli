@@ -22,7 +22,6 @@ const makeRequest = (graphql, request) => new Promise((resolve, reject) => {
 
 exports.createPages = ({ actions, graphql }) => {
     const { createPage } = actions
-
     const getDetailProgram = makeRequest(graphql,`
     {
         allStrapiProgram{
@@ -45,7 +44,31 @@ exports.createPages = ({ actions, graphql }) => {
             })
         })
     })
-    return getDetailProgram
+    const getDetailKK = makeRequest(graphql,`
+    {
+        allStrapiKepeduliankita {
+            edges {
+              node {
+                id
+              }
+            }
+        }
+    }`).then(resultKK => {
+        resultKK.data.allStrapiKepeduliankita.edges.map((res, idx) => {
+            createPage({
+                path: `/kepeduliankita_${res.node.id}`,
+                component: path.resolve(`./src/templates/detail-kepeduliankita.js`),
+                context: {
+                    id: res.node.id,
+                }
+            })
+        })
+    })
+
+    return Promise.all([
+        getDetailProgram,
+        getDetailKK
+    ]) 
 }
 
 // exports.createPages = ({ actions }) => {

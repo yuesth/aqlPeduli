@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap');
+.paragraf1{
+    color: rgb(80, 79, 79);
+    font-family: 'Poppins';
+    font-size: 18px;
+}
+
+.wadah-lb{
+    margin: auto auto;
+    max-width: 800px;
+    padding: 20px;
+    border: 2px solid #E92998;
+    border-radius: 20px;
+    text-align: center;
+    font-family: 'Poppins';
+}
+
+.wadah-alamat{
+    margin: auto auto;
+    text-align: center;
+}
+
+.border-alamat{
+    display: block;
+    width: 60px;
+    height: 5px;
+    background: #412f2f;
+    margin: auto;
+}
+
+.wadah-map{
+    height: 400px;
+}

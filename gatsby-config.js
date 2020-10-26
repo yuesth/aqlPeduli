@@ -32,9 +32,9 @@ module.exports = {
       options: {
         apiURL: `http://localhost:1337`,
         queryLimit: 1000,
-        contentTypes: [`program`,`kategori`, `update-program`],
-      }
-    }
+        contentTypes: [`program`,`kategori`, `update-program`, `cerita-program`, `kepeduliankita`],
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

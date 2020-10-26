@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import ItemProgram from "./item-program"
+import React, { useEffect } from 'react'
 import { graphql, Link, useStaticQuery } from "gatsby"
 import Img from 'gatsby-image'
 import { Card, ListGroupItem, ListGroup, Button, Col } from "react-bootstrap"
@@ -153,9 +152,6 @@ function ListProgram() {
                             }
                         </ListGroupItem>
                     </ListGroup>
-                    {/* <Card.Body>
-                        <ButtonBacaLagi teks={`DONASI`} />
-                    </Card.Body> */}
                 </Card>
             </Link>
         )
@@ -191,39 +187,3 @@ function ListProgram() {
 
 export default ListProgram
 
-
-{/* {data_item.map((val,idx)=>(
-                    <ItemProgram dataStrapiProgram={val} />
-                ))} */}
-
-
-   // var data_item = [], data_kategori = [];
-    // dataProgram.allStrapiProgram.edges.map(doc => {
-    //     var item_program = {
-    //         idKategori: doc.node.idKategori,
-    //         judulProgram: doc.node.judulProgram,
-    //         totaldanaProgram: doc.node.totaldanaProgram,
-    //         totalterkumpulProgram: doc.node.totalterkumpulProgram,
-    //         durasiProgram: doc.node.durasiProgram,
-    //         deskripsiProgram: doc.node.deskripsiProgram
-    //     }
-    //     data_item.push(item_program)
-    // })
-    // dataKategori.allStrapiKategori.edges.map(doc=>{
-    //     var item_kategori = {
-    //         id: doc.node.strapiId,
-    //         namaKategori: doc.node.namaKategori
-    //     }
-    //     data_kategori.push(item_kategori)
-    // })
-
-
-      // const kategori = ['Peduli Bencana', 'Peduli Kesehatan', 'Peduli Masjid', 'Peduli Pangan', 'Dapur Sedekah']
-    // const kategoriBtn = kategori.map((value, idx) => {
-    //     return (
-    //         <Button variant="default" className="kategoriBtn" key={idx} onClick="filterSelection('bencana')">
-    //             {value}
-    //         </Button>
-    //     )
-
-    // })
