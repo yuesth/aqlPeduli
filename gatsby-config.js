@@ -30,7 +30,7 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: `http://localhost:1337`,
+        apiURL: `http://167.99.72.148`,
         queryLimit: 1000,
         contentTypes: [`program`,`kategori`, `update-program`, `cerita-program`, `kepeduliankita`],
       },

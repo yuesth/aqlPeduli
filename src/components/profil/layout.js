@@ -1,24 +1,7 @@
 import React from "react"
 import Layout from "../layout"
 import { Container, Row, Col } from "react-bootstrap"
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import "./layout.css"
-
-const TampilMap = (props) => {
-    return (
-        <Map center={props.position} zoom={props.zoom}>
-            <TileLayer
-                url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-                attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-            />
-            {props.markerText !== "" &&
-                <Marker position={props.position}>
-                    <Popup>{props.markerText}</Popup>
-                </Marker>
-            }
-        </Map>
-    )
-}
 
 const LayoutProfil = () => {
     return (
