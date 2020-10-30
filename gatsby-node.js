@@ -22,7 +22,7 @@ const makeRequest = (graphql, request) => new Promise((resolve, reject) => {
 
 exports.createPages = ({ actions, graphql }) => {
     const { createPage } = actions
-    const getDetailProgram = makeRequest(graphql,`
+    const getDetailProgram = makeRequest(graphql, `
     {
         allStrapiProgram{
             edges{
@@ -44,7 +44,7 @@ exports.createPages = ({ actions, graphql }) => {
             })
         })
     })
-    const getDetailKK = makeRequest(graphql,`
+    const getDetailKK = makeRequest(graphql, `
     {
         allStrapiKepeduliankita {
             edges {
@@ -64,11 +64,35 @@ exports.createPages = ({ actions, graphql }) => {
             })
         })
     })
+    const getListProgram = makeRequest(graphql, `
+    {
+        allStrapiKategori{
+            edges{
+                node{
+                    id
+                    namaKategori
+                }
+            }
+        }
+    }
+    `).then(resultKateg => {
+        resultKateg.data.allStrapiKategori.edges.map((res, idx)=>{
+            createPage({
+                path: `/programdonasi_${res.node.id}`,
+                component: path.resolve(`./src/templates/kategori-programdonasi.js`),
+                context: {
+                    id: res.node.id,
+                    nama: res.node.namaKategori
+                }
+            })
+        })
+    })
 
     return Promise.all([
         getDetailProgram,
-        getDetailKK
-    ]) 
+        getDetailKK,
+        getListProgram
+    ])
 }
 
 // exports.createPages = ({ actions }) => {

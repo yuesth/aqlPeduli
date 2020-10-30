@@ -126,39 +126,41 @@ function ListProgram() {
         var namaKategoriQuery2 = namaKategoriQuery.replace(/\s/g, "")
         var namaClass = "item-donasi " + namaKategoriQuery2
         return (
-            <Link to={`/programs_${doc.node.id}`}>
-                <Card border="primary" className={namaClass}>
-                    {doc.node.gambarProgram !== null && <Img fixed={doc.node.gambarProgram.childImageSharp.fixed} />
-                    }
-                    <Card.Body>
-                        <Card.Title>
-                            <p>judul: {doc.node.judulProgram}</p>
-                        </Card.Title>
-                        <p>deskripsi: {doc.node.deskripsiProgram}</p>
-                    </Card.Body>
-                    <ListGroup className="list-group-flush">
-                        <ListGroupItem>
-                            <DariTanggal tanggal={doc.node.created_at} />
-                            <p>durasi: {doc.node.durasiProgram} hari</p>
-                            {doc.node.durasiProgram !== null && <SisaHari tanggal={doc.node.created_at} durasi={doc.node.durasiProgram} />
-                            }
-                        </ListGroupItem>
-                        <ListGroupItem>
-                            <p>total dana: Rp {doc.node.totaldanaProgram}</p>
-                        </ListGroupItem>
-                        <ListGroupItem>
-                            <p>terkumpul: {doc.node.totalterkumpulProgram}</p>
-                            {doc.node.totalterkumpulProgram !== null && <PersenTerkumpul total={doc.node.totaldanaProgram} terkumpul={doc.node.totalterkumpulProgram} />
-                            }
-                        </ListGroupItem>
-                    </ListGroup>
-                </Card>
-            </Link>
+            <div style={{margin:`0 auto`}}>
+                <Link to={`/programs_${doc.node.id}`}>
+                    <Card border="primary" className={namaClass}>
+                        {doc.node.gambarProgram !== null && <Img fixed={doc.node.gambarProgram.childImageSharp.fixed} />
+                        }
+                        <Card.Body>
+                            <Card.Title>
+                                <p>judul: {doc.node.judulProgram}</p>
+                            </Card.Title>
+                            <p>deskripsi: {doc.node.deskripsiProgram}</p>
+                        </Card.Body>
+                        <ListGroup className="list-group-flush">
+                            <ListGroupItem>
+                                <DariTanggal tanggal={doc.node.created_at} />
+                                <p>durasi: {doc.node.durasiProgram} hari</p>
+                                {doc.node.durasiProgram !== null && <SisaHari tanggal={doc.node.created_at} durasi={doc.node.durasiProgram} />
+                                }
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                <p>total dana: Rp {doc.node.totaldanaProgram}</p>
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                <p>terkumpul: {doc.node.totalterkumpulProgram}</p>
+                                {doc.node.totalterkumpulProgram !== null && <PersenTerkumpul total={doc.node.totaldanaProgram} terkumpul={doc.node.totalterkumpulProgram} />
+                                }
+                            </ListGroupItem>
+                        </ListGroup>
+                    </Card>
+                </Link>
+            </div>
         )
     })
 
     return (
-        <div className="container">
+        <div className="container" style={{ textAlign: `center` }}>
             <div className="row">
                 <Col id="col-list">
                     <Button variant="default" className="kategoriBtn active" onClick={() => filterSelection('all')}>Semua</Button>

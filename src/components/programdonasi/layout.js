@@ -16,7 +16,6 @@ function LayoutProgramdonasi() {
                     </Col>
                 </Row>
             </Container>
-            <br />
             <br />                
             <ListProgram />
         </Layout>

@@ -9,6 +9,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import Navbar from "./navbar/navbar"
+import NavbarBaru from "./navbar2/navbar-baru"
 import Footer from "./footer"
 import "./layout.css"
 
@@ -25,12 +26,11 @@ function Layout({ children, props }) {
   `)
   return (
     <>
-      <Navbar />
-      {/* <Header siteTitle={data.site.siteMetadata?.title || `Title`} /> */}
+      <NavbarBaru />
       <div
         style={{
           margin: `0 auto`,
-          paddingTop: `40px`,
+          paddingTop: `120px`,
         }}
       >
         <main>{children}</main>
