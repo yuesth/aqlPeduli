@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { graphql, Link } from 'gatsby'
-import { Card, ListGroupItem, ListGroup, Button, Col, Container, Row } from "react-bootstrap"
+import { ProgressBar, Button, Col, Container, Row } from "react-bootstrap"
 import Img from 'gatsby-image'
 import Layout from "../components/layout"
 import "./kategori-programdonasi.css"
@@ -35,7 +35,7 @@ const KategoriProgramdonasi = ({ data }) => {
         var dariTanggal = new Date(props.tanggal)
         var string = dariTanggal.getDate().toString() + " " + dariTanggal.toLocaleString('default', { month: 'long' }) + " " + dariTanggal.getFullYear()
         return (
-            <p>Dari: {string}</p>
+            <span style={{ fontSize: `10px` }}>{string}</span>
         )
     }
 
@@ -43,14 +43,14 @@ const KategoriProgramdonasi = ({ data }) => {
         var hariTerakhir = new Date(new Date(props.tanggal).getTime() + (props.durasi * 24 * 60 * 60 * 1000));
         var sisaHari = Math.floor((hariTerakhir.getTime() - new Date().getTime()) / (1000 * 3600 * 24))
         return (
-            <span>({sisaHari.toString()} hari lagi)</span>
+            <span>{sisaHari.toString()} hari</span>
         )
     }
 
     function PersenTerkumpul(props) {
         var persen = (props.terkumpul / props.total) * 100;
         return (
-            <span>progress: {persen.toString()} %</span>
+            <ProgressBar now={persen} />
         )
     }
 
@@ -86,38 +86,40 @@ const KategoriProgramdonasi = ({ data }) => {
     }
 
     const listProgram = data.allStrapiProgram.edges.map(doc => {
+        var tostring = parseInt(doc.node.totalterkumpulProgram)
+        var idr = tostring.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
         var namaKategoriQuery = doc.node.kategori.namaKategori
         var namaKategoriQuery2 = namaKategoriQuery.replace(/\s/g, "")
-        var namaClass = "item-donasi " + namaKategoriQuery2
+        var namaClass = "card item-donasi " + namaKategoriQuery2
         return (
             <div style={{ margin: `0 auto` }}>
                 <Link to={`/programs_${doc.node.id}`}>
-                    <Card border="primary" className={namaClass}>
-                        {doc.node.gambarProgram !== null && <Img fixed={doc.node.gambarProgram.childImageSharp.fixed} />
+                    <div class={namaClass} style={{ width: `280px`, margin: `15px 10px`, height: `410px`, borderRadius: `20px`, color: `black` }}>
+                        {doc.node.gambarProgram !== null && <Img fixed={doc.node.gambarProgram.childImageSharp.fixed} style={{ marginTop: `8px`, borderRadius: `5px` }} />
                         }
-                        <Card.Body>
-                            <Card.Title>
-                                <p>judul: {doc.node.judulProgram}</p>
-                            </Card.Title>
-                            <p>deskripsi: {doc.node.deskripsiProgram}</p>
-                        </Card.Body>
-                        <ListGroup className="list-group-flush">
-                            <ListGroupItem>
-                                <DariTanggal tanggal={doc.node.created_at} />
-                                <p>durasi: {doc.node.durasiProgram} hari</p>
-                                {doc.node.durasiProgram !== null && <SisaHari tanggal={doc.node.created_at} durasi={doc.node.durasiProgram} />
-                                }
-                            </ListGroupItem>
-                            <ListGroupItem>
-                                <p>total dana: Rp {doc.node.totaldanaProgram}</p>
-                            </ListGroupItem>
-                            <ListGroupItem>
-                                <p>terkumpul: {doc.node.totalterkumpulProgram}</p>
-                                {doc.node.totalterkumpulProgram !== null && <PersenTerkumpul total={doc.node.totaldanaProgram} terkumpul={doc.node.totalterkumpulProgram} />
-                                }
-                            </ListGroupItem>
-                        </ListGroup>
-                    </Card>
+                        <div class="card-body" style={{ padding: `10px`, textAlign: `left` }}>
+                            <DariTanggal tanggal={doc.node.created_at}></DariTanggal>
+                            <h5 class="card-title">{doc.node.judulProgram}</h5>
+                            <p class="card-text kontenListProgram">{doc.node.deskripsiProgram}</p>
+                            <Container>
+                                <Row>
+                                    <Col md={5} style={{ textAlign: `left`, fontSize: `10px` }}>
+                                        <p style={{ marginBottom: `5px` }}>Sisa Waktu</p>
+                                        {doc.node.durasiProgram !== null && <SisaHari tanggal={doc.node.created_at} durasi={doc.node.durasiProgram} />
+                                        }
+                                    </Col>
+                                    <Col md={{ span: `6`, offset: `1` }} style={{ textAlign: `right`, fontSize: `10px` }}>
+                                        <p style={{ marginBottom: `5px` }}>Terkumpul</p>
+                                        <span>Rp.{idr}</span>
+                                    </Col>
+                                </Row>
+                            </Container>
+                            <br />
+                            <div>
+                                <PersenTerkumpul total={doc.node.totaldanaProgram} terkumpul={doc.node.totalterkumpulProgram}></PersenTerkumpul>
+                            </div>
+                        </div>
+                    </div>
                 </Link>
             </div>
         )
@@ -135,37 +137,64 @@ const KategoriProgramdonasi = ({ data }) => {
             <br />
             <div className="container" style={{ textAlign: `center` }}>
                 <div className="row">
-                    <Col id="col-list">
-                        <Button variant="default" className="kategoriBtn" onClick={() => filterSelection('all')}>Semua</Button>
-                        {item_kateg.map((kateg, idx) => {
-                            if (kateg.namaKateg == data.strapiKategori.namaKategori) {
-                                var nama1 = kateg.namaKateg
-                                var nama2 = nama1.replace(/\s/g, "")
-                                return (
-                                    <Button variant="default" className="kategoriBtn active" key={idx} onClick={() => filterSelection(nama2)}>
-                                        {kateg.namaKateg}
-                                    </Button>
-                                )
-                            }
-                            else {
-                                var nama1 = kateg.namaKateg
-                                var nama2 = nama1.replace(/\s/g, "")
-                                return (
-                                    <Button variant="default" className="kategoriBtn" key={idx} onClick={() => filterSelection(nama2)}>
-                                        {kateg.namaKateg}
-                                    </Button>
-                                )
-                            }
-                        })}
-                        <input className="searchInput" placeholder="Masukkan judul program kepedulian">
+                    <Col md={2} id="col-list">
+                        <Row>
+                            <Col style={{ textAlign: `center` }}>
+                                <h4>Kategori</h4>
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Container>
+                                <Row>
+                                    <Col>
+                                        <Button variant="default" onClick={() => filterSelection('all')} className="kategoriBtn">Semua</Button>
+                                    </Col>
+                                </Row>
+                                <br />
+                            </Container>
+                            {item_kateg.map((kateg, idx) => {
+                                if (kateg.namaKateg == data.strapiKategori.namaKategori) {
+                                    var nama1 = kateg.namaKateg
+                                    var nama2 = nama1.replace(/\s/g, "")
+                                    return (
+                                        <Container>
+                                            <Row>
+                                                <Col>
+                                                    <Button variant="default" onClick={() => filterSelection(nama2)} key={idx} className="kategoriBtn active">{kateg.namaKateg}</Button>
+                                                </Col>
+                                            </Row>
+                                            <br />
+                                        </Container>
+                                    )
+                                }
+                                else {
+                                    var nama1 = kateg.namaKateg
+                                    var nama2 = nama1.replace(/\s/g, "")
+                                    return (
+                                        <Container>
+                                            <Row>
+                                                <Col>
+                                                    <Button variant="default" onClick={() => filterSelection(nama2)} key={idx} className="kategoriBtn">{kateg.namaKateg}</Button>
+                                                </Col>
+                                            </Row>
+                                            <br />
+                                        </Container>
+                                    )
+                                }
+                            })}
+                        </Row>
+                    </Col>
+                    <Col md={10}>
+                        <input className="searchInput" placeholder="Masukkan judul program kepedulian" style={{ width: `80%` }}>
                         </input>
                         <a href="#"><img src={`images/program_donasi/searchBtn.png`} alt="" /></a>
+                        <div className="container-fluid d-flex">
+                            <div className="row">
+                                {listProgram}
+                            </div>
+                        </div>
                     </Col>
-                </div>
-                <div className="container-fluid d-flex justify-content-center">
-                    <div className="row">
-                        {listProgram}
-                    </div>
                 </div>
             </div>
         </Layout>
