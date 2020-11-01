@@ -7,7 +7,6 @@
     height: auto;
     width: auto;
     margin-right: 10px;
-    display: block;
 }
 
 .kategoriBtn:hover{
@@ -19,12 +18,11 @@
     height: auto;
     width: auto;
     margin-right: 10px;
-    display: block;
   }
 
   .searchInput{
-    margin-left: 10px;
-    width: 90%;
+      margin-left: 10px;
+    width: auto;
     border: thin 1px #E92998;
     border-radius: 13px;
     border: solid #b9227a 2px;
@@ -56,15 +54,4 @@
     width: auto;
     margin-right: 10px;
     background-color: silver;
-    display: block;
-  }
-
-  .kontenListProgram{
-    font-size: 12px;
-    font-weight: lighter;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* number of lines to show */
-    -webkit-box-orient: vertical;
   }

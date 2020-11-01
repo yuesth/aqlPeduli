@@ -1,0 +1,84 @@
+
+
+.item-link{
+    margin: auto 10px;
+}
+
+.navbar-link{
+    margin: 0 auto;
+}
+
+.navbar-btn{
+    position: relative;
+    top: 0;
+}
+
+.navbar-donasi{
+    display: inline-flex;
+    padding: 8px 8px;
+    margin-right: 20px;
+    border: none;
+    width: auto;
+    height: auto;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff0e6;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    background: #E92998;
+}
+
+.navbar-donasi:hover{
+    display: inline-flex;
+    padding: 8px 8px;
+    margin-right: 20px;
+    border: none;
+    width: auto;
+    height: auto;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff0e6;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    background: #8b185b;
+}
+
+.navbar-relawan{
+    display: inline-flex;
+    padding: 8px 8px;
+    margin-right: 20px;
+    border: none;
+    width: auto;
+    height: auto;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff0e6;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    background: #2205c7;
+}
+
+.navbar-relawan:hover{
+    display: inline-flex;
+    padding: 8px 8px;
+    margin-right: 20px;
+    border: none;
+    width: auto;
+    height: auto;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff0e6;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    background: #1b0599;
+}

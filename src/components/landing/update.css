@@ -10,3 +10,25 @@
     margin-left: 30px;
     background: #412f2f;
 }
+
+.kontenUpdate{
+    font-size: 12px;
+    font-weight: lighter;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.next, .previous{
+    background-color: black;
+}
+
+.div-previous, .div-next{
+    width: 2%;
+}
+
+.div-satu{
+    padding: 0;
+}

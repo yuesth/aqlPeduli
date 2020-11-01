@@ -1,7 +1,7 @@
 import React from "react"
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import { Container, Row, Col } from "react-bootstrap"
-import { Link } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 import "./kepedulian.css"
 
 const Judul = () => {
@@ -17,69 +17,60 @@ const Judul = () => {
     )
 }
 
-const ListKepedulian = () => {
+const ListKepedulian = (props) => {
+    const arrGbr = ['natural-disaster', 'healthcare', 'jama-masjid', 'beverages', 'give-love']
+    const listKategori = props.dataKateg.map((doc, idx) => {
+        var pathGbr = `images/kepedulian/${arrGbr[idx]}.png`
+        return (
+            <Col style={{ textAlign: `center` }} className="colKepedulian">
+                <Link to={`/programdonasi_${doc.id}`} className="card text-center">
+                    <div>
+                        <img src={pathGbr}></img>
+                        <h4>{doc.nama}</h4>
+                    </div>
+                </Link>
+            </Col>
+        )
+    })
     return (
-        <Container>
-            <Row>
-                <Col xs={6} md={4} style={{ textAlign: `center` }} className="colKepedulian">
-                    <Link to="/kepedulian" className="card text-center">
-                        <div>
-                            <img src={`images/kepedulian/natural-disaster.png`}></img>
-                            <h4>Peduli Bencana</h4>
-                        </div>
-                    </Link>
-                </Col>
-                <Col xs={6} md={4} style={{ textAlign: `center` }} className="colKepedulian">
-                    <Link to="/kepedulian" className="card text-center">
-                        <div>
-                            <img src={`images/kepedulian/jama-masjid.png`}></img>
-                            <h4>Peduli Masjid</h4>
-                        </div>
-                    </Link>
-                </Col>
-                <Col xs={6} md={4} style={{ textAlign: `center` }} className="colKepedulian" >
-                    <Link to="/kepedulian" className="card text-center">
-                        <div>
-                            <img src={`images/kepedulian/healthcare.png`}></img>
-                            <h4>Peduli Kesehatan</h4>
-                        </div>
-                    </Link>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={6} md={{ span: 4, offset: 2 }} style={{ textAlign: `center` }} className="colKepedulian">
-                    <Link to="/kepedulian" className="card text-center">
-                        <div>
-                            <img src={`images/kepedulian/beverages.png`}></img>
-                            <h4>Peduli Pangan</h4>
-                        </div>
-                    </Link>
-                </Col>
-                <Col xs={6} md={4} style={{ textAlign: `center` }} className="colKepedulian">
-                    <Link to="/kepedulian" className="card text-center">
-                        <div>
-                            <img src={`images/kepedulian/give-love.png`}></img>
-                            <h4>Dapur Sedekah</h4>
-                        </div>
-                    </Link>
-                </Col>
-            </Row>
-        </Container>
+        <Row>
+            {listKategori}
+        </Row>
     )
 }
 
-function kepedulianPart() {
+function KepedulianPart() {
+    const queryKategori = useStaticQuery(graphql`
+    query QueryKategoriKL{
+        allStrapiKategori{
+            edges{
+                node{
+                    id
+                    namaKategori
+                    idKategori
+                }
+            }
+        }
+    }
+    `)
+    const itemKategori = []
+    queryKategori.allStrapiKategori.edges.map(doc => {
+        var item = {
+            id: doc.node.id,
+            nama: doc.node.namaKategori,
+            idK: doc.node.idKategori
+        }
+        itemKategori.push(item)
+    })
     return (
         <Container>
             <Row>
                 <Judul />
             </Row>
             <br></br>
-            <Row>
-                <ListKepedulian />
-            </Row>
+            <ListKepedulian dataKateg={itemKategori} />
         </Container>
     )
 }
 
-export default kepedulianPart;
+export default KepedulianPart;

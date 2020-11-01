@@ -14,13 +14,6 @@ function SisaHari(props) {
 }
 
 function TimelineUpdate(props) {
-    // useEffect(() => {
-    //     function lampirGambar() {
-    //         var x = document.getElementById("gambar-update");
-    //         x.style.display = "inline-block"
-    //     }
-    // })
-
     const listUpdate = props.update.map((doc, idx) => {
         return (
             <li className="timeline-item bg-white rounded ml-3 p-4">

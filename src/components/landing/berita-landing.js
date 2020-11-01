@@ -24,9 +24,9 @@ const JudulJenisBerita = (props) => {
         <Col>
             <div className="judulenisberita">
                 <div className="border-juduljenisberita">
-                    <h5>
+                    <h3>
                         {props.teksJudulJenisBerita}
-                    </h5>
+                    </h3>
                 </div>
             </div>
         </Col>
