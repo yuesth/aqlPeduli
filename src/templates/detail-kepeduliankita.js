@@ -9,7 +9,7 @@ function DariTanggal(props) {
     var dariTanggal = new Date(props.tanggal)
     var string = dariTanggal.getDate().toString() + " " + dariTanggal.toLocaleString('default', { month: 'long' }) + " " + dariTanggal.getFullYear()
     return (
-        <p>tanggal: {string}</p>
+        <p>{string}</p>
     )
 }
 

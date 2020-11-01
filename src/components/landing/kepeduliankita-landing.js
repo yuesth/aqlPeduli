@@ -87,7 +87,7 @@ function KepedulianKitaPart() {
                 gambarKepedulianKita {
                     childImageSharp {
                       fixed(width: 300, height: 140) {
-                        src
+                      	src
                       }
                     }
                 }
