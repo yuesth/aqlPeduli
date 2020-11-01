@@ -9,7 +9,7 @@ function DariTanggal(props) {
     var dariTanggal = new Date(props.tanggal)
     var string = dariTanggal.getDate().toString() + " " + dariTanggal.toLocaleString('default', { month: 'long' }) + " " + dariTanggal.getFullYear()
     return (
-        <p>{string}</p>
+        <p>tanggal: {string}</p>
     )
 }
 
@@ -30,11 +30,7 @@ const DetailKK = ({ data }) => {
                 </Row>
                 <Row>
                     <Col>
-<<<<<<< HEAD
                     {data.strapiKepeduliankita.gambarKepedulianKita !== null && <Img fixed={data.strapiKepeduliankita.gambarKepedulianKita.childImageSharp.fixed}></Img>}
-=======
-                        {data.strapiKepeduliankita.gambarKepedulianKita !== null && <Img fixed={data.strapiKepeduliankita.gambarKepedulianKita.childImageSharp.fixed}></Img>}
->>>>>>> refs/remotes/origin/master
                     </Col>
                 </Row>
                 <Row>
